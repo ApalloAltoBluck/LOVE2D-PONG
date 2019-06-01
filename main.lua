@@ -1,8 +1,11 @@
+g = love.graphics --so instead of typing love.graphics.blahblahblah every time,
+k = love.keyboard --you can simply write g.blahblahblah! Yay!
+
 function love.load()
     -- frame size declaration
 
-    width = love.graphics.getWidth()
-    height = love.graphics.getHeight()
+    width = g.getWidth()
+    height = g.getHeight()
     -- ball properties
     ballx, bally = width/2 , height/2
     ballxvelocity, ballyvelocity = -1 , 1
@@ -19,13 +22,13 @@ end
 
 function love.draw()
     -- drawing the ball
-    love.graphics.ellipse( "fill", ballx, bally, 10, 10 )
+    g.ellipse( "fill", ballx, bally, 10, 10 )
     -- drawing the paddles
-    love.graphics.rectangle("fill", 15,paddle1, 10,60)
-    love.graphics.rectangle("fill", width-15,paddle2, 10,60)
+    g.rectangle("fill", 15,paddle1, 10,60)
+    g.rectangle("fill", width-15,paddle2, 10,60)
     -- draw the score
-    love.graphics.print(score1, (width/2)-30, 30)
-    love.graphics.print(score2, (width/2)+30, 30)
+    g.print(score1, (width/2)-30, 30)
+    g.print(score2, (width/2)+30, 30)
 end
 
 function love.update(dt)
@@ -67,16 +70,16 @@ function collider()
 end
 
 function paddlecontrol()
-    if love.keyboard.isDown("w") then
+    if k.isDown("w") then
         paddle1 = paddle1 - 3
     end
-    if love.keyboard.isDown("s") then
+    if k.isDown("s") then
         paddle1 = paddle1 + 3
     end
-    if love.keyboard.isDown("up") then
+    if k.isDown("up") then
         paddle2 = paddle2 - 3
     end
-    if love.keyboard.isDown("down") then
+    if k.isDown("down") then
         paddle2 = paddle2 + 3
     end
 end
